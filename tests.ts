@@ -917,35 +917,46 @@ describe("Popups", () => {
     it("Display ending popup whem game ends", async function() {
         await driver.get('file:///home/piotr/Kosmiczny-Handlarz/gameboard.html');
 
-        setTimeout(async function() {
-            expect (await driver.findElement(By.id('game_over')).getText()).to.equal('Koniec gry!');
-            expect (await driver.findElement(By.id('ending_msg')).getText()).to.include('nick');
-            expect(await driver.findElement(By.id('ending_popup')).getCssValue('display')).to.equal('flex');
-        }, game_duration + 10);
+        setTimeout (async function() {
+            await driver.sleep(5000);
+
+            setTimeout(async function() {
+                expect (await driver.findElement(By.id('game_over')).getText()).to.equal('Koniec gry!');
+                expect (await driver.findElement(By.id('ending_msg')).getText()).to.include('nick');
+                expect(await driver.findElement(By.id('ending_popup')).getCssValue('display')).to.equal('flex');
+            }, game_duration + 10);
+        });
     });
 
     it("Display ship popups", async function() {
         await driver.get('file:///home/piotr/Kosmiczny-Handlarz/gameboard.html');
 
-        expect (await driver.findElement(By.id('popup_ship')).getCssValue('display')).to.equal('none');
-        await driver.find("a[id='a_Axiom']").doClick();
-        expect (await driver.findElement(By.id('popup_ship')).getCssValue('display')).to.not.equal('none');
+        setTimeout(async function () {
+            expect (await driver.findElement(By.id('popup_ship')).getCssValue('display')).to.equal('none');
+            await driver.find("a[id='a_Axiom']").doClick();
+            expect (await driver.findElement(By.id('popup_ship')).getCssValue('display')).to.not.equal('none');
+        });
     });
 
     it("Display planet popups", async function () {
         await driver.get('file:///home/piotr/Kosmiczny-Handlarz/gameboard.html');
 
-        expect (await driver.findElement(By.id('popup_planet')).getCssValue('display')).to.equal('none');
-        await driver.findElement(By.id('a_Tatooine')).doClick();
-        expect (await driver.findElement(By.id('popup_planet')).getCssValue('display')).to.not.equal('none');
+        setTimeout(async function() {
+            expect (await driver.findElement(By.id('popup_planet')).getCssValue('display')).to.equal('none');
+            await driver.findElement(By.id('a_Tatooine')).doClick();
+            expect (await driver.findElement(By.id('popup_planet')).getCssValue('display')).to.not.equal('none');
+        });
     });
 });
 describe("Game start", () => {
     it("start", async () => {
         await driver.get('file:///home/piotr/Kosmiczny-Handlarz/index.html');
-        await driver.find("button").doClick();
-        await driver.find("input[type='text']").sendKeys("Nickname");
-        await driver.find("input[type='submit']").doClick();
-        expect(await driver.find("h1[id='h1_nick']").getText()).to.be.equal('Nickname');
+
+        setTimeout(async function() {
+            await driver.find("button").doClick();
+            await driver.find("input[type='text']").sendKeys("Nickname");
+            await driver.find("input[type='submit']").doClick();
+            expect(await driver.find("h1[id='h1_nick']").getText()).to.be.equal('Nickname');
+        });
     });
 });
