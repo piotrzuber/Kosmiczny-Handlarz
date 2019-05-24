@@ -824,11 +824,11 @@ function printStarships() {
     var content = "";
     starships.forEach(function (ship) {
         if (ship.isTraveling()) {
-            content += "<div class=\"unity dropdown\"><a href=\"javascript:windowShip('" + ship.name + "')\">";
+            content += "<div class=\"unity dropdown\"><a id=\"a_" + ship.name + "\" href=\"javascript:windowShip('" + ship.name + "')\">";
             content += "<div class=\"dropdown-content\"><p>W podróży do " + ship.travel.destination.name + "</p></div>";
         }
         else {
-            content += "<div class=\"unity dropdown\"><a href=\"javascript:windowShip('" + ship.name + "')\">";
+            content += "<div class=\"unity dropdown\"><a id=\"a_" + ship.name + "\" href=\"javascript:windowShip('" + ship.name + "')\">";
             content += "<div class=\"dropdown-content\"><p>Położenie:" + ship.travel.start.name + "</p></div>";
         }
         content += ship.name;
@@ -871,7 +871,7 @@ function printPlanets() {
     var divPlanets = document.getElementById('div_planets');
     var content = "";
     planets.forEach(function (planet) {
-        content += "<div class=\"unity\"><a href=\"javascript:windowPlanet('" + planet.name + "')\">";
+        content += "<div class=\"unity\"><a id=\"a_" + planet.name + "\" href=\"javascript:windowPlanet('" + planet.name + "')\">";
         content += planet.name;
         content += "</a></div>";
     });

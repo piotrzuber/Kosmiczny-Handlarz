@@ -882,10 +882,10 @@ function printStarships(): void {
 
     starships.forEach ((ship) => {
         if (ship.isTraveling()) {
-            content += "<div class=\"unity dropdown\"><a href=\"javascript:windowShip('" + ship.name + "')\">";
+            content += "<div class=\"unity dropdown\"><a id=\"a_" + ship.name + "\" href=\"javascript:windowShip('" + ship.name + "')\">";
             content += "<div class=\"dropdown-content\"><p>W podróży do " + ship.travel.destination.name + "</p></div>";
         } else {
-            content += "<div class=\"unity dropdown\"><a href=\"javascript:windowShip('" + ship.name + "')\">";
+            content += "<div class=\"unity dropdown\"><a id=\"a_" + ship.name +"\" href=\"javascript:windowShip('" + ship.name + "')\">";
             content += "<div class=\"dropdown-content\"><p>Położenie:" + ship.travel.start.name + "</p></div>";
         }
 
@@ -935,7 +935,7 @@ function printPlanets(): void {
     let content: string = "";
 
     planets.forEach ((planet) => {
-        content += "<div class=\"unity\"><a href=\"javascript:windowPlanet('" + planet.name + "')\">";
+        content += "<div class=\"unity\"><a id=\"a_" + planet.name + "\" href=\"javascript:windowPlanet('" + planet.name + "')\">";
         content += planet.name;
         content += "</a></div>";
     });
