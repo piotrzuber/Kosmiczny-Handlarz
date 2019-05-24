@@ -793,11 +793,13 @@ class Travel {
     start: Planet;
     destination: Planet;
     remaining_time: number;
+    alreadyFinished: boolean;
 
     constructor(start: Planet) {
         this.start = start;
         this.destination = null;
         this.remaining_time = 0;
+        this.alreadyFinished = false;
     }
 
     getTime(): number {
@@ -805,25 +807,20 @@ class Travel {
         let length_y = this.destination.position.y - this.start.position.y;
         let len_squared = length_x * length_x + length_y * length_y;
 
-        let l = 1; let r = len_squared; let s: number;
-
-        while (l < r) {
-            s = Math.floor((l + r) / 2);
-            if (len_squared > s * s) {
-                l = s + 1;
-            } else {
-                r = s;
-            }
-        }
+        let l = Math.ceil(Math.sqrt(len_squared));
 
         return l;
     }
 
     proceed() {
+        if (this.alreadyFinished) {
+            this.alreadyFinished = false;
+        }
         if (this.remaining_time <= 0 && this.destination != null) {
             this.remaining_time = 0;
             this.start = this.destination;
             this.destination = null;
+            this.alreadyFinished = true;
         } else {
             this.remaining_time--;
         }
@@ -1363,8 +1360,14 @@ function updateValues(): void {
         ship.travel.proceed();
     });
     let ship = starships.filter((ship) => ship.name === openPopupObject);
-    if (ship.length > 0 && ship[0].isTraveling()) {
+    if (ship.length > 0 && ship[0].travel.alreadyFinished) {
         windowShip(openPopupObject);
+    } else if (ship.length > 0 && ship[0].isTraveling()) {
+        printTravelInfo(ship[0].name);
+    }
+    let planet = planets.filter((planet) => planet.name === openPopupObject);
+    if (planet.length > 0) {
+        printCurrentShips(planet[0].name);
     }
     
 }

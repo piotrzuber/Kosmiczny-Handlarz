@@ -13,8 +13,8 @@ function printBests() {
     rowHead.appendChild(th);
     var results = JSON.parse(resultsS);
     if (results[0][1] === "-1") {
-        var it = 5;
-        while (it > 0) {
+        var it_1 = 5;
+        while (it_1 > 0) {
             var row = table.insertRow();
             var cell = row.insertCell();
             var text_1 = document.createTextNode('brak wyników');
@@ -22,7 +22,7 @@ function printBests() {
             cell = row.insertCell();
             text_1 = document.createTextNode('0');
             cell.appendChild(text_1);
-            it--;
+            it_1--;
         }
     }
     else {

@@ -1,0 +1,31 @@
+{
+  "name": "WWW",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piotrzuber/Kosmiczny-Handlarz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/piotrzuber/Kosmiczny-Handlarz/issues"
+  },
+  "homepage": "https://github.com/piotrzuber/Kosmiczny-Handlarz#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "@types/selenium-webdriver": "^4.0.0",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "mocha-webdriver": "^0.1.13",
+    "selenium-webdriver": "^4.0.0-alpha.1",
+    "ts-node": "^8.1.0",
+    "typescript": "^3.4.5"
+  }
+}

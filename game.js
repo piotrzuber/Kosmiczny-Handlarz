@@ -749,8 +749,8 @@ var Planet = /** @class */ (function () {
         this.available_items = new Array();
         for (var item in init_planets[name][ITEMS_KEY]) {
             var price = { buy: init_planets[name][ITEMS_KEY][item][BUY_KEY], sell: init_planets[name][ITEMS_KEY][item][SELL_KEY] };
-            var it = { name: item, available: init_planets[name][ITEMS_KEY][item][AVAILABLE_KEY], price: price };
-            this.available_items.push(it);
+            var it_1 = { name: item, available: init_planets[name][ITEMS_KEY][item][AVAILABLE_KEY], price: price };
+            this.available_items.push(it_1);
         }
         this.position = { x: init_planets[name]['x'], y: init_planets[name]['y'] };
     }
@@ -767,30 +767,24 @@ var Travel = /** @class */ (function () {
         this.start = start;
         this.destination = null;
         this.remaining_time = 0;
+        this.alreadyFinished = false;
     }
     Travel.prototype.getTime = function () {
         var length_x = this.destination.position.x - this.start.position.x;
         var length_y = this.destination.position.y - this.start.position.y;
         var len_squared = length_x * length_x + length_y * length_y;
-        var l = 1;
-        var r = len_squared;
-        var s;
-        while (l < r) {
-            s = Math.floor((l + r) / 2);
-            if (len_squared > s * s) {
-                l = s + 1;
-            }
-            else {
-                r = s;
-            }
-        }
+        var l = Math.ceil(Math.sqrt(len_squared));
         return l;
     };
     Travel.prototype.proceed = function () {
+        if (this.alreadyFinished) {
+            this.alreadyFinished = false;
+        }
         if (this.remaining_time <= 0 && this.destination != null) {
             this.remaining_time = 0;
             this.start = this.destination;
             this.destination = null;
+            this.alreadyFinished = true;
         }
         else {
             this.remaining_time--;
@@ -1079,8 +1073,8 @@ function buy() {
         ship.cargo.size += quantity;
         var itemShip = ship.cargo.stock.filter(function (item) { return item.name === itemSelect.options[itemSelect.selectedIndex].value; });
         if (itemShip.length === 0) {
-            var it = { name: item.name, quantity: quantity };
-            ship.cargo.stock.push(it);
+            var it_2 = { name: item.name, quantity: quantity };
+            ship.cargo.stock.push(it_2);
         }
         else {
             itemShip[0].quantity += quantity;
@@ -1244,8 +1238,15 @@ function updateValues() {
         ship.travel.proceed();
     });
     var ship = starships.filter(function (ship) { return ship.name === openPopupObject; });
-    if (ship.length > 0 && ship[0].isTraveling()) {
+    if (ship.length > 0 && ship[0].travel.alreadyFinished) {
         windowShip(openPopupObject);
+    }
+    else if (ship.length > 0 && ship[0].isTraveling()) {
+        printTravelInfo(ship[0].name);
+    }
+    var planet = planets.filter(function (planet) { return planet.name === openPopupObject; });
+    if (planet.length > 0) {
+        printCurrentShips(planet[0].name);
     }
 }
 function updateBoard() {
