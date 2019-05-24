@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "resolveJsonModule": true,
+        "esModuleInterop": true
+    },
+    "files": [
+        "game.ts",
+        "index.ts"
+    ]
+}

@@ -6,7 +6,7 @@
     <title>Kosmiczny Handlarz</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='start.css'>
-    <script src='main.js'></script>
+    <script src='index.js'></script>
 </head>
 
 <body>
@@ -42,20 +42,7 @@
             </div>
             <div class="others">
                 <div>
-                    <table>
-                        <tr>
-                            <th>Gracz</th>
-                            <th>Liczba punktów</th>
-                        </tr>
-                        <tr>
-                            <td>Mama</td>
-                            <td>1234567890</td>
-                        </tr>
-                        <tr>
-                            <td>Tata</td>
-                            <td>1234565432</td>
-                        </tr>
-                    </table>
+                    <table id="scores"></table>
                 </div>
                 <div>
                     <button class="button">
@@ -79,6 +66,7 @@
             </figcaption>
         </figure>
     </div>
+    <script>printBests();</script>
 </body>
 
 </html>

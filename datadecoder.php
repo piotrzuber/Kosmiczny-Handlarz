@@ -1,5 +1,5 @@
 <?php
-$json_string = file_get_contents("initial_data.json");
+$json_string = file_get_contents("/src/tsc/initial_data.json");
 $json_decoded = json_decode($json_string, true, 512, JSON_BIGINT_AS_STRING);
 
 $game_duration = $json_decoded['game_duration'];
