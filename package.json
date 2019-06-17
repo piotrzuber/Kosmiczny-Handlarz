@@ -1,8 +1,9 @@
 {
-  "name": "WWW",
+  "name": "www",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "build": "tsc --target es2015 program.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,13 +20,27 @@
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.6",
+    "@types/node": "^12.0.8",
     "@types/selenium-webdriver": "^4.0.0",
+    "@types/sqlite3": "^3.1.5",
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
     "mocha-webdriver": "^0.1.13",
     "selenium-webdriver": "^4.0.0-alpha.1",
-    "ts-node": "^8.1.0",
-    "typescript": "^3.4.5"
+    "ts-loader": "^6.0.2",
+    "ts-node": "^8.2.0",
+    "typescript": "^3.5.2",
+    "webpack": "^4.34.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.1"
   },
-  "description": ""
+  "watch": "npm-watch",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "npm-watch": "^0.6.0",
+    "sqlite3": "^4.0.8"
+  }
 }

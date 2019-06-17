@@ -58,11 +58,17 @@
         <figure>
             <a href="index.html" class="close"></a>
             <figcaption>
-                <h2>Podaj swój pseudonim</h2>
-                <form action="gameboard.html">
-                    <input type="text" name="nick" value="Gracz">
-                    <input type="submit" value="Zagraj!">
-                </form>
+                <h2>Zaloguj się</h2>
+                <input type="text" id="nick" value="Login">
+                <input type="password" id="pwd" value="Hasło">
+                <input type="button" value="Zaloguj!" onclick="authUser();">
+                <h2>Stany początkowe</h2>
+                <select id="games" onchange="displayInfo();"></select><script>printGames();</script>
+                <h2>Dodaj nowy stan początkowy</h2>
+                <input type="text" id="game_name" value="Nazwa">
+                <input type="file" id="game_json" accept=".json">
+                <input type="button" value="Dodaj" onclick="addGame();">
+                <input type="button" value="Zagraj!" onclick="startGame();">
             </figcaption>
         </figure>
     </div>
